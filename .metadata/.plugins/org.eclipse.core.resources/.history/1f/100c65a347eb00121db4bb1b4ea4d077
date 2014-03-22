@@ -1,0 +1,57 @@
+CREATE  TABLE IF NOT EXISTS `TabelaCategoria` (
+  `nome` VARCHAR(10) NOT NULL ,
+  `id` INT NOT NULL ,
+  PRIMARY KEY (`id`) );
+
+
+CREATE  TABLE IF NOT EXISTS `Produtos` (
+  `idProdutos` INT NOT NULL ,
+  `nome` VARCHAR(45) NULL ,
+  `imagem` VARCHAR(45) NULL ,
+  `TabelaCategoria_id` INT NOT NULL ,
+  PRIMARY KEY (`idProdutos`) ,
+  CONSTRAINT `fk_Produtos_TabelaCategoria1`
+    FOREIGN KEY (`TabelaCategoria_id` )
+    REFERENCES `TabelaCategoria` (`id` )
+);
+
+
+
+CREATE  TABLE IF NOT EXISTS `Venda` (
+  `Produtos_idProdutos` INT NOT NULL ,
+  `idVenda` INT NOT NULL ,
+  `preco` FLOAT NULL ,
+  PRIMARY KEY (`idVenda`) ,
+  CONSTRAINT `fk_Venda_Produtos1`
+    FOREIGN KEY (`Produtos_idProdutos` )
+    REFERENCES `Produtos` (`idProdutos` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+
+CREATE  TABLE IF NOT EXISTS `VendasNaoEnviada` (
+  `Produtos_idProdutos` INT NOT NULL ,
+  `idVenda` INT NOT NULL ,
+  `preco` FLOAT NULL ,
+  PRIMARY KEY (`idVenda`) ,
+  CONSTRAINT `fk_Venda_Produtos10`
+    FOREIGN KEY (`Produtos_idProdutos` )
+    REFERENCES `Produtos` (`idProdutos` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+
+CREATE  TABLE IF NOT EXISTS android_metadata (locale varchar(10));
+
+insert into android_metadata values("PT_BR");
+
+insert into TabelaCategoria values("Toalha",1);
+
+insert into Produtos values(1,"Toalha de Banho do Myckey", "" ,1);
+insert into Produtos values(2,"Toalha de Banho da Minie", "" ,1);
+insert into Produtos values(3,"Toalha de Banho Simples", "" ,1);
+insert into Produtos values(4,"Toalha de Rosto Simples", "" ,1);
+
+
+
+
